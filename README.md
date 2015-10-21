@@ -46,9 +46,6 @@ srr_tomcat::default
     <td>URL that contains the tomcat install tar.gz</td>
     <td><tt>"http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.56/bin/"</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -61,9 +58,6 @@ srr_tomcat::default
     <td>Basically the name of the tomcat tar.gz file without the .tar.gz</td>
     <td><tt>"apache-tomcat-7.0.54"</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -76,9 +70,6 @@ srr_tomcat::default
     <td>The root folder for the tomcat install</td>
     <td><tt>"/usr/local"</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -91,9 +82,6 @@ srr_tomcat::default
     <td>The user account for running the tomcat service</td>
     <td><tt>"tomcat"</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -106,9 +94,6 @@ srr_tomcat::default
     <td>The group for permissions to the tomcat service</td>
     <td><tt>"tomcat"</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -121,9 +106,6 @@ srr_tomcat::default
     <td>The location of the logs directory</td>
     <td><tt>"#{['srr_tomcat']['root']}/tomcat/logs"</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -136,9 +118,6 @@ srr_tomcat::default
     <td>The options for catalina</td>
     <td><tt>""-Xms512m -Xmx1536m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=256m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Dorg.apache.jasper.compiler.Parser.STRICT_QUOTE_ESCAPING=false -Dorg.apache.jasper.compiler.Parser.STRICT_WHITESPACE=false -Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_EQUALS_IN_VALUE=true -Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_HTTP_SEPARATORS_IN_V0=true -Dcom.sun.management.jmxremote.port=10080""</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -162,9 +141,6 @@ srr_tomcat::default
          </Cluster>
 		 -->"</tt></td>
   </tr>
-</table>
-
-<table>
  <tr>
    <th>Key</th>
    <th>Type</th>
@@ -177,9 +153,6 @@ srr_tomcat::default
    <td>An option for enabling the RemoteIpValve. Off by default. If you use this, make sure to use %a in the log pattern instead of %{X-Forwarded-For}i to get the X-Forwarded-For from the ACE.</td>
    <td><tt>"yes"</tt></td>
  </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -192,9 +165,6 @@ srr_tomcat::default
     <td>The format of the access log in server.xml</td>
     <td><tt>"%a %l %u %t %r %s %b %{User-Agent}i %D"</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -207,9 +177,6 @@ srr_tomcat::default
     <td>The list of JDBC drivers to copy. Files must exist in the cookbooks /files/default folder.</td>
     <td><tt>['jconn2.jar', 'jtds-1.2.jar', 'sqljdbc41.jar']</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -222,9 +189,6 @@ srr_tomcat::default
     <td>The list of JDBC drivers to delete from the file system.</td>
     <td><tt>['sqljdbc.jar']</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -250,9 +214,6 @@ srr_tomcat::default
         maxWait="10000"/>
 		-->'</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -270,9 +231,6 @@ srr_tomcat::default
 	type="javax.sql.DataSource" />
 	-->'</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -290,9 +248,6 @@ srr_tomcat::default
       <file-size-threshold>0</file-size-threshold>
     </multipart-config>"</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -311,9 +266,6 @@ srr_tomcat::default
   <user username="role1" password="tomcat" roles="role1"/>
 -->"</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
@@ -326,9 +278,6 @@ srr_tomcat::default
     <td>The name of the databag with the encrypted tomcat user password</td>
     <td><tt>'tomcat'</tt></td>
   </tr>
-</table>
-
-<table>
   <tr>
     <th>Key</th>
     <th>Type</th>
