@@ -1,0 +1,5 @@
+# This file is managed by Chef.
+# Do NOT modify this file directly.
+
+%<%= @tomcat_group %> ALL=(<%= @tomcat_user %>) NOPASSWD: ALL
+%<%= @tomcat_group %> ALL= NOPASSWD: /sbin/service tomcat *

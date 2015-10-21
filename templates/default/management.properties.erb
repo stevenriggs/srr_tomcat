@@ -1,0 +1,7 @@
+# This file is managed by Chef.
+# Do NOT modify this file directly.
+
+java.rmi.server.hostname=<%= @fqhostname %> #hostname -i must return the correct ip
+com.sun.management.jmxremote
+com.sun.management.jmxremote.authenticate=true
+com.sun.management.jmxremote.ssl=false

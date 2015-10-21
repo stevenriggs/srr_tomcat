@@ -1,0 +1,137 @@
+#!/bin/bash
+
+# This file is managed by Chef.
+# Do NOT modify this file directly.
+
+# chkconfig: 234 20 80
+# description: Tomcat server basic start/shutdown script
+# processname: tomcat
+
+TOMCAT_HOME=<%= @tomcat_root %>/tomcat
+
+
+case $1 in
+
+
+
+start)
+#make sure tomcat isn't running before trying to start
+TOMCATPID=$(/usr/bin/pgrep -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME})
+if [[ -n "$TOMCATPID" ]]
+then
+    echo "Notice: Tomcat is already running as PID $TOMCATPID. Nothing to do."
+    exit 0
+fi
+
+/bin/su -l -s /bin/sh <%= @tomcat_user %> -c $TOMCAT_HOME/bin/startup.sh
+
+#make sure tomcat is running
+TOMCATPID=$(/usr/bin/pgrep -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME})
+if [[ -z "$TOMCATPID" ]]
+then
+    echo "Error: Tomcat failed to start. Trying again."
+    /bin/su -l -s /bin/sh <%= @tomcat_user %> -c $TOMCAT_HOME/bin/startup.sh
+fi
+TOMCATPID=$(/usr/bin/pgrep -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME})
+if [[ -z "$TOMCATPID" ]]
+then
+    echo "Error: Tomcat failed to start. Abort."
+    exit 1
+fi
+;;
+
+
+
+stop)
+#make sure tomcat is running before trying to shutdown
+TOMCATPID=$(/usr/bin/pgrep -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME})
+if [[ -z "$TOMCATPID" ]]
+then
+    echo "Notice: Tomcat is not running. Nothing to do."
+    exit 0
+fi
+
+/bin/su -l -s /bin/sh <%= @tomcat_user %> -c $TOMCAT_HOME/bin/shutdown.sh
+
+#wait for up to 1 minute for tomcat to stop
+count=1
+while [ $count -le 30 ]
+do
+  TOMCATPID=$(/usr/bin/pgrep -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME})
+  #if tomcat is not running
+  if [[ -z "$TOMCATPID" ]]
+  then
+	break
+  fi
+  sleep 2
+  count=$(( $count + 1 ))
+done
+
+#kill tomcat if it failed to stop
+/usr/bin/pkill -9 -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME}
+if [[ $? -eq 0 ]]; then
+  echo "NOTICE: tomcat did not shutdown cleanly and was killed"
+  echo "NOTICE: you may want to double-check the process table"
+fi
+
+#make sure tomcat is stopped
+TOMCATPID=$(/usr/bin/pgrep -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME})
+if [[ -n "$TOMCATPID" ]]
+then
+    echo "Error: Tomcat failed to shutdown. Aborted."
+    exit 1
+fi
+;;
+
+
+
+restart)
+#make sure tomcat is running before trying to stop
+TOMCATPID=$(/usr/bin/pgrep -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME})
+if [[ -n "$TOMCATPID" ]]
+then
+    /bin/su -l -s /bin/sh <%= @tomcat_user %> -c $TOMCAT_HOME/bin/shutdown.sh
+fi
+
+#wait for up to 1 minute for tomcat to stop
+count=1
+while [ $count -le 30 ]
+do
+  TOMCATPID=$(/usr/bin/pgrep -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME})
+  #if tomcat is not running
+  if [[ -z "$TOMCATPID" ]]
+  then
+	break
+  fi
+  sleep 2
+  count=$(( $count + 1 ))
+done
+
+#kill tomcat if it failed to stop
+/usr/bin/pkill -9 -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME}
+if [[ $? -eq 0 ]]; then
+  echo "NOTICE: tomcat did not shutdown cleanly and was killed"
+  echo "NOTICE: you may want to double-check the process table"
+fi
+
+#make sure tomcat is stopped
+TOMCATPID=$(/usr/bin/pgrep -f -U <%= @tomcat_user %> java.\*${TOMCAT_HOME})
+if [[ -n "$TOMCATPID" ]]
+then
+    echo "Error: Tomcat failed to shutdown. Restart aborted."
+    exit 1
+fi
+
+/bin/su -l -s /bin/sh <%= @tomcat_user %> -c $TOMCAT_HOME/bin/startup.sh
+;;
+
+
+
+
+*)
+echo "Usage: $0 {start|stop|restart|status}"
+
+
+
+esac
+exit 0
