@@ -47,22 +47,10 @@ srr_tomcat::default
     <td><tt>"http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.56/bin/"</tt></td>
   </tr>
   <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
     <td><tt>['srr_tomcat']['version']</tt></td>
     <td>String</td>
     <td>Basically the name of the tomcat tar.gz file without the .tar.gz</td>
     <td><tt>"apache-tomcat-7.0.54"</tt></td>
-  </tr>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
   </tr>
   <tr>
     <td><tt>['srr_tomcat']['root']</tt></td>
@@ -71,22 +59,10 @@ srr_tomcat::default
     <td><tt>"/usr/local"</tt></td>
   </tr>
   <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
     <td><tt>['srr_tomcat']['user']</tt></td>
     <td>String</td>
     <td>The user account for running the tomcat service</td>
     <td><tt>"tomcat"</tt></td>
-  </tr>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
   </tr>
   <tr>
     <td><tt>['srr_tomcat']['group']</tt></td>
@@ -95,34 +71,16 @@ srr_tomcat::default
     <td><tt>"tomcat"</tt></td>
   </tr>
   <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
     <td><tt>['srr_tomcat']['logsdir']</tt></td>
     <td>String</td>
     <td>The location of the logs directory</td>
     <td><tt>"#{['srr_tomcat']['root']}/tomcat/logs"</tt></td>
   </tr>
   <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
     <td><tt>['srr_tomcat']['catalina_opts']</tt></td>
     <td>String</td>
     <td>The options for catalina</td>
     <td><tt>""-Xms512m -Xmx1536m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=256m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Dorg.apache.jasper.compiler.Parser.STRICT_QUOTE_ESCAPING=false -Dorg.apache.jasper.compiler.Parser.STRICT_WHITESPACE=false -Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_EQUALS_IN_VALUE=true -Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_HTTP_SEPARATORS_IN_V0=true -Dcom.sun.management.jmxremote.port=10080""</tt></td>
-  </tr>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
   </tr>
   <tr>
     <td><tt>['srr_tomcat']['multicast']</tt></td>
@@ -142,23 +100,11 @@ srr_tomcat::default
 		 -->"</tt></td>
   </tr>
  <tr>
-   <th>Key</th>
-   <th>Type</th>
-   <th>Description</th>
-   <th>Default</th>
- </tr>
- <tr>
    <td><tt>['srr_tomcat']['useremoteipvalve']</tt></td>
    <td>String</td>
    <td>An option for enabling the RemoteIpValve. Off by default. If you use this, make sure to use %a in the log pattern instead of %{X-Forwarded-For}i to get the X-Forwarded-For from the ACE.</td>
    <td><tt>"yes"</tt></td>
  </tr>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
   <tr>
     <td><tt>['srr_tomcat']['accesslogvalvepattern']</tt></td>
     <td>String</td>
@@ -178,22 +124,10 @@ srr_tomcat::default
     <td><tt>['jconn2.jar', 'jtds-1.2.jar', 'sqljdbc41.jar']</tt></td>
   </tr>
   <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
     <td><tt>['srr_tomcat']['jdbc_drivers_to_delete']</tt></td>
     <td>Array</td>
     <td>The list of JDBC drivers to delete from the file system.</td>
     <td><tt>['sqljdbc.jar']</tt></td>
-  </tr>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
   </tr>
   <tr>
     <td><tt>['srr_tomcat']['jdbc_resource']</tt></td>
@@ -215,12 +149,6 @@ srr_tomcat::default
 		-->'</tt></td>
   </tr>
   <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
     <td><tt>['srr_tomcat']['jndi']</tt></td>
     <td>String</td>
     <td>Configure a JNDI resource here</td>
@@ -232,12 +160,6 @@ srr_tomcat::default
 	-->'</tt></td>
   </tr>
   <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
     <td><tt>['srr_tomcat']['multipart_config']</tt></td>
     <td>String</td>
     <td>Increasing this can allow larger WAR files to be deployed through the Manager interface in tomcat</td>
@@ -247,12 +169,6 @@ srr_tomcat::default
       <max-request-size>52428800</max-request-size>
       <file-size-threshold>0</file-size-threshold>
     </multipart-config>"</tt></td>
-  </tr>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
   </tr>
   <tr>
     <td><tt>['srr_tomcat']['tomcat_users']</tt></td>
@@ -267,22 +183,10 @@ srr_tomcat::default
 -->"</tt></td>
   </tr>
   <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
     <td><tt>['srr_tomcat']['password_databag']</tt></td>
     <td>String</td>
     <td>The name of the databag with the encrypted tomcat user password</td>
     <td><tt>'tomcat'</tt></td>
-  </tr>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
   </tr>
   <tr>
     <td><tt>['srr_tomcat']['tomcat_user_password']</tt></td>
